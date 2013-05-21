@@ -1,0 +1,179 @@
+<html>
+<head>
+   <title>Romo</title>
+   <meta name="viewport" content="width=320" />
+   
+   
+   <style type="text/css">
+      
+     
+      @-webkit-keyframes ketawakeyframe{
+         
+         0% {
+            -webkit-transform:rotate(20deg);
+            margin-top: 30px;
+         }
+         25%{
+            -webkit-transform:rotate(10deg);
+            margin-top:60px; 
+         }
+         50%{
+            -webkit-transform:rotate(-20deg);
+         }
+         100%{
+            -webkit-transform:rotate(-10deg);
+            margin-top:20px;
+         
+         }
+            
+      
+      } /* Safari and Chrome */
+      
+      body{
+         background: #ffb72a;
+      }
+      /*
+     .garis{
+         border: 1px #333 solid;
+      }
+      */
+     
+      canvas{
+
+         margin-top: 60px;
+      }
+      .hehe{
+        -webkit-animation : ketawakeyframe 2.5s;
+      }
+      #batuk{
+         width: 250px;
+         position: absolute;
+         height: 150px;
+         z-index: 3;
+      }
+      #pipikiri{
+         position: absolute;;
+         width: 50px;
+         height: 100px;
+         top :150px;
+         z-index: 4;
+      }
+      #pipikanan{
+         position: absolute;;
+         width: 50px;
+         height: 100px;
+         top :150px;
+         left: 200px;
+         z-index: 6;
+      }
+
+      #irung{
+        position: absolute;;
+         width: 50px;
+         height: 50px;
+         top :210px;
+         left: 90px;
+         z-index: 5; 
+      }
+      #gulu{
+         width: 250px;
+         position: absolute;
+         top:300px;
+         z-index: 6;
+         height: 90px;
+      }
+   </style>
+
+   <script type="text/javascript" src="js/character.js"></script>
+   <script type="text/javascript" src="js/jquery.js"></script>
+
+</head>
+<body class="body">
+   <div id="batuk" class="garis">
+
+   </div>
+   <div id="pipikiri" class="garis">
+
+   </div>
+    <div id="pipikanan" class="garis">
+
+   </div>
+   <div id="irung" class="garis">
+   </div>
+   <div id="gulu" class="garis"></div>
+   <canvas id="canvas" width="250" height="320" class="garis"></canvas>
+   <script type="text/javascript" src="js/hammer.js"></script>
+   <script type="text/javascript">
+      var batuk = document.getElementById('batuk');
+      var pipikiri = document.getElementById('pipikiri');
+      var pipikanan = document.getElementById('pipikanan');
+      var irung = document.getElementById('irung');
+      var gulu = document.getElementById('gulu');
+      var instensitas =0;
+      Hammer(batuk , {prevent_default:true}).on('dragleft', function(event){
+         instensitas += 1;
+         //log.innerHTML = 'kiri';
+         if(instensitas >10){
+          
+            instensitas =0;
+         }
+      })
+      
+      Hammer(batuk, {prevent_default:true}).on('dragright', function(event){
+         instensitas += 1;
+        console.log(instensitas);
+         //log.innerHTML = 'kanan';
+         if(instensitas >10){
+            merem();
+            instensitas =0;
+         }
+      });
+
+      Hammer(batuk).on('doubletap' , function(event){
+        melek();
+
+      });
+
+      Hammer(batuk).on('hold' , function(){
+        muring();
+      });
+      Hammer(pipikiri).on('tap' , function(){
+         matagerakkiri();
+      })
+      Hammer(pipikanan).on('tap', function(){
+         matagerakkanan();
+      });
+      var intervalirung =0;
+      Hammer(irung, {prevent_default:true}).on('dragleft', function(event){
+         intervalirung += 1;
+       // console.log(instensitas);
+         //log.innerHTML = 'kanan';
+         if(intervalirung >10){
+            
+            intervalirung =0;
+            tawa();
+            $('canvas').addClass('hehe');
+            setTimeout(function(){
+               $('canvas').removeClass('hehe');
+            },2500);
+            
+         }
+      });
+
+      Hammer(irung, {prevent_default:true}).on('dragright', function(event){
+         intervalirung += 1;
+         console.log(intervalirung);
+         //log.innerHTML = 'kanan';
+         if(intervalirung >10){
+            
+            intervalirung =0;
+         }
+      });
+
+      Hammer(gulu).on('hold' , function(){
+         mumet();
+      });
+
+   </script>
+</body>
+</html>
